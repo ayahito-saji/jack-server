@@ -1,0 +1,6 @@
+<% if current_member %>
+    <%= current_member.nickname %>さん
+    <%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+<% else %>
+    <%= link_to "ログイン", new_member_session_path %>
+<% end %>
