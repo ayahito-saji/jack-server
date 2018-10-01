@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+slack = Slack::Slack.new
+
+members = slack.getActiveMembersList
+members.each do |member|
+  puts "#{member['id']} #{member['profile']['real_name']}(#{member['profile']['display_name']}) #{member['profile']['email']}"
+end
