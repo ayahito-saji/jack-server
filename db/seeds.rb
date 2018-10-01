@@ -52,5 +52,6 @@ members.each do |member|
           is_graduate: false
       }
   )
+  member.skip_confirmation!
   member.save!
 end
