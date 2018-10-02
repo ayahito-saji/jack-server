@@ -1,5 +1,11 @@
-<p>Welcome <%= @email %>!</p>
+<p>名古屋のアプリ制作団体 jackへようこそ! <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>jack管理botのjackunです．</p>
+<p>
+  jackへのメンバー登録の際に，本人のメールアドレスに正しくメールが配信されるかのテストを行なっています．下のリンクを押して，メールが正しく受信できたことを知らせてください．
+</p>
+<p>
+  もしjackへのメンバー登録の心当たりがない場合は，このメールは無視してください．
+</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to '正常に本人がメールを受信しました', confirmation_url(@resource, confirmation_token: @token) %></p>
