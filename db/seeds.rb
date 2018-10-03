@@ -39,7 +39,7 @@ members.each do |member|
   end
   member = Member.new(
       {
-          username: member['profile']['email'].split('@')[0],
+          username: member['profile']['email'].split('@')[0].split('.')[0],
           slack_id: member['id'],
           nickname: nickname,
           first_name: first_name,
