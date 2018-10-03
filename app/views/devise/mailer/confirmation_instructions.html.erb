@@ -8,4 +8,4 @@
   もしjackへのメンバー登録の心当たりがない場合は，このメールは無視してください．
 </p>
 
-<p><%= link_to '正常に本人がメールを受信しました', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to '正常に本人がメールを受信しました', member_confirmation_url(confirmation_token: @token) %></p>
