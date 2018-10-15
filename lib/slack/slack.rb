@@ -4,46 +4,6 @@ module Slack
     require 'uri'
     require 'json'
 
-    # 出欠確認
-    def attendanceCheck
-      ['@saji.ayahito'].each do |member|
-        data = {
-            channel: member,
-            as_user: true,
-            attachments: [
-                fallback: 'fallback string',
-                title: '11月12日(12:30〜)',
-                callback_id: 0,
-                attachment_type: 'default',
-                actions: [
-                    {
-                        name: 'attendance',
-                        text: '出席する',
-                        type: 'button',
-                        style: 'primary',
-                        value: 'btn1Value'
-                    },
-                    {
-                        name: 'midway_attendance',
-                        text: '途中から参加',
-                        type: 'button',
-                        style: 'default',
-                        value: 'btn2Value'
-                    },
-                    {
-                        name: 'absence',
-                        text: '欠席する',
-                        type: 'button',
-                        style: 'danger',
-                        value: 'btn3Value'
-                    }
-                ]
-            ].to_json.to_s
-        }
-        postMessage(data)
-      end
-    end
-
     # activeなメンバーリストを取得
     def getActiveMembersList
       return getMembersListWithoutBot.select{|member| (!member['deleted'])}
@@ -67,6 +27,14 @@ module Slack
     # メッセージを投げる
     def postMessage(data)
       url = 'https://slack.com/api/chat.postMessage'
+      data['token'] = ENV['SLACK_BOT_TOKEN']
+
+      JSON.parse(post(url, data))
+    end
+
+    # メッセージを更新する
+    def update(data)
+      url = 'https://slack.com/api/chat.update'
       data['token'] = ENV['SLACK_BOT_TOKEN']
 
       JSON.parse(post(url, data))
