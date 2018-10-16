@@ -26,12 +26,11 @@ class AttendanceController < ApplicationController
         )
       end
 
-      ['@saji.ayahito'].each do |member|
-
+      Member.all.each do |member|
         member_event = MemberEvent.find_by(member: member, event: event)
         unless member_event
           data = {
-              channel: member,
+              channel: member.slack_id,
               as_user: true,
               attachments: [
                   fallback: event.event_id,
