@@ -1,0 +1,43 @@
+<table border>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @event.title %></td>
+  </tr>
+  <tr>
+    <th>時間</th>
+    <td><%= @event.start_at.strftime("%m/%d(%a) %H:%M") %>〜<%= @event.end_at.strftime("%m/%d(%a) %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>場所</th>
+    <td><%= @event.place %></td>
+  </tr>
+  <tr>
+    <th>出席する(<%= MemberEvent.where(attendance: :attendance, event: @event).count %>人)</th>
+    <td>
+      <% MemberEvent.where(attendance: :attendance, event: @event).each do |event_member| member = event_member.member %>
+          <%= link_to member.nickname, member_path(member.username) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>途中から参加(<%= MemberEvent.where(attendance: :midway_attendance, event: @event).count %>人)</th>
+    <td>
+      <% MemberEvent.where(attendance: :midway_attendance, event: @event).each do |event_member| member = event_member.member %>
+          <%= link_to member.nickname, member_path(member.username) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>欠席する(<%= MemberEvent.where(attendance: :absence, event: @event).count %>人)</th>
+    <td>
+      <% MemberEvent.where(attendance: :absence, event: @event).each do |event_member| member = event_member.member %>
+          <%= link_to member.nickname, member_path(member.username) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th>詳細</th>
+    <td><%= @event.description %></td>
+  </tr>
+
+</table>

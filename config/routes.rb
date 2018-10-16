@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post 'confirmation'     => 'devise/confirmation#create',    as: nil
   end
   resources :members, param: :username
+  resources :events, param: :event_id
 
   root 'pages#index'
 

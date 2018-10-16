@@ -51,7 +51,7 @@ class CallbackController < ApplicationController
     data = @body['original_message']
     data['channel'] = @body['channel']['id']
     data['ts'] = @body['message_ts']
-    data['attachments'][0]['text'] = @body['actions'][0]['name']
+    data['attachments'][0]['text'] = "#{@body['actions'][0]['name']} https://50f94ac6.ngrok.io/events/#{event.event_id}"
     data['attachments'][0]['color'] = ["#5cb85c", "#808080", "#d9534f"][@body['actions'][0]['value'].to_i]
     data['attachments'] = data['attachments'].to_json.to_s
 

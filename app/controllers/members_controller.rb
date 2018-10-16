@@ -7,7 +7,6 @@ class MembersController < ApplicationController
   def create
   end
   def show
-    puts params
     @member = Member.find_by(username: params[:username])
   end
   def edit

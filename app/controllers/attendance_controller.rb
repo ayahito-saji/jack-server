@@ -36,7 +36,7 @@ class AttendanceController < ApplicationController
               attachments: [
                   fallback: event.event_id,
                   title: "#{event.title} #{event.start_at.strftime("%m/%d(%a) %H:%M")}〜",
-                  text: '未回答',
+                  text: "未回答 https://50f94ac6.ngrok.io/events/#{event.event_id}",
                   callback_id: 'attendance_check',
                   attachment_type: 'default',
                   actions: [
