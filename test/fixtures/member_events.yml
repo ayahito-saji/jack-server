@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  member: one
+  event: one
+  value: 1
+
+two:
+  member: two
+  event: two
+  value: 1

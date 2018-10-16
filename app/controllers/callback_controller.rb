@@ -27,15 +27,36 @@ class CallbackController < ApplicationController
   private
   def attendance_check
 
+    member = Member.find_by(slack_id: @body['user']['id'])
+    event = Event.find_by(event_id: @body['original_message']['attachments'][0]['fallback'])
+
+    # 出欠の確認を行います．
+    member_event = MemberEvent.find_by(member: member, event: event)
+    if member_event # すでに出欠確認を行なっていれば更新する
+      member_event.update_attributes(
+          {
+              attendance: @body['actions'][0]['value'].to_i
+          }
+      )
+    else # まだ出欠確認をしていなかった場合新たに作成する
+      member_event = MemberEvent.create(
+          {
+              member: member,
+              event: event,
+              attendance: @body['actions'][0]['value'].to_i
+          }
+      )
+    end
+
     data = @body['original_message']
     data['channel'] = @body['channel']['id']
     data['ts'] = @body['message_ts']
-    data['attachments'][0]['text'] = @body['actions'][0]['value']
+    data['attachments'][0]['text'] = @body['actions'][0]['name']
+    data['attachments'][0]['color'] = ["#5cb85c", "#808080", "#d9534f"][@body['actions'][0]['value'].to_i]
     data['attachments'] = data['attachments'].to_json.to_s
 
     slack = Slack::Slack.new
     res = slack.update(data)
-    pp res
   end
 
   # 出席者一覧を表示するコマンド
@@ -48,13 +69,13 @@ class CallbackController < ApplicationController
         attachments: [
             {
                 title: "出席する (#{Member.count})",
-                text: (Member.all.map {|member| "<@#{member.slack_id}>"}).join(", "),
+                text: "",
                 color: "#5cb85c"
             },
             {
                 title: "途中から出席 (0)",
                 text: "",
-                color: "#4f4f4f"
+                color: "#808080"
             },
             {
                 title: "欠席する (0)",

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_id: MyString
+  start_at: 2018-10-16 11:21:26
+  end_at: 2018-10-16 11:21:26
+  title: MyString
+  genre: one
+  place: MyString
+  description: MyText
+
+two:
+  event_id: MyString
+  start_at: 2018-10-16 11:21:26
+  end_at: 2018-10-16 11:21:26
+  title: MyString
+  genre: two
+  place: MyString
+  description: MyText
