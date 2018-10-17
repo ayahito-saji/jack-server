@@ -2,20 +2,22 @@ class CallbackController < ApplicationController
   protect_from_forgery :except => [:slack]
   require 'pp'
   require 'json'
+
+  # slackからのcallback先
   def slack
-    if params['command']
+    if params['command'] # slack command
       @body = params
       case params['command']
-        when '/jack_atd'
-          jack_atd
+  #      when '/jack_atd' # コマンドとそれの実行
+  #        jack_atd
       end
       render plain: ""
-    else
+    else                 # slack command以外
       @body = JSON.parse(params['payload'])
-      case @body['type']
-        when 'url_verification'
+      case @body['type'] # callbackの種類
+        when 'url_verification'     # url認証ならば，送られて来た値を全て返す（これで認証OK）
           render json: @body
-        when 'interactive_message'
+        when 'interactive_message'  # インタラクティブコンポーネント（ボタン等）ならば，callback_idで振り分ける
           case @body['callback_id']
             when 'attendance_check'
               attendance_check()
@@ -58,36 +60,4 @@ class CallbackController < ApplicationController
     slack = Slack::Slack.new
     res = slack.update(data)
   end
-
-  # 出席者一覧を表示するコマンド
-  def jack_atd
-
-    data = {
-        channel: @body['user_id'],
-        as_user: true,
-        text: ' */jack_atd*',
-        attachments: [
-            {
-                title: "出席する (#{Member.count})",
-                text: "",
-                color: "#5cb85c"
-            },
-            {
-                title: "途中から出席 (0)",
-                text: "",
-                color: "#808080"
-            },
-            {
-                title: "欠席する (0)",
-                text: "",
-                color: "#d9534f"
-            },
-
-        ].to_json.to_s
-    }
-
-    slack = Slack::Slack.new
-    res = slack.postMessage(data)
-  end
-
 end
