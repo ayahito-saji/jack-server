@@ -15,7 +15,7 @@
     <th>出席する(<%= MemberEvent.where(attendance: :attendance, event: @event).count %>人)</th>
     <td>
       <% MemberEvent.where(attendance: :attendance, event: @event).each do |event_member| member = event_member.member %>
-          <%= link_to member.nickname, member_path(member.username) %>
+          <%= link_to member.nickname, member_path(member.member_id) %>
       <% end %>
     </td>
   </tr>
@@ -23,7 +23,7 @@
     <th>途中から参加(<%= MemberEvent.where(attendance: :midway_attendance, event: @event).count %>人)</th>
     <td>
       <% MemberEvent.where(attendance: :midway_attendance, event: @event).each do |event_member| member = event_member.member %>
-          <%= link_to member.nickname, member_path(member.username) %>
+          <%= link_to member.nickname, member_path(member.member_id) %>
       <% end %>
     </td>
   </tr>
@@ -31,7 +31,7 @@
     <th>欠席する(<%= MemberEvent.where(attendance: :absence, event: @event).count %>人)</th>
     <td>
       <% MemberEvent.where(attendance: :absence, event: @event).each do |event_member| member = event_member.member %>
-          <%= link_to member.nickname, member_path(member.username) %>
+          <%= link_to member.nickname, member_path(member.member_id) %>
       <% end %>
     </td>
   </tr>
