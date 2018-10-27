@@ -3,7 +3,7 @@
 class DeviseCreateMembers < ActiveRecord::Migration[5.1]
   def change
     create_table :members do |t|
-      t.string   :username,           null: false, default: ""
+      t.string   :member_id,          null: false, default: ""
       t.string   :nickname,           null: false, default: ""
       t.string   :first_name,         null: false, default: ""
       t.string   :last_name,          null: false, default: ""
@@ -51,7 +51,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    add_index :members, :username,             unique: true
+    add_index :members, :member_id,            unique: true
     add_index :members, :email,                unique: true
     add_index :members, :reset_password_token, unique: true
     add_index :members, :confirmation_token,   unique: true

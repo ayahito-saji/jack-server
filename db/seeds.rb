@@ -34,12 +34,12 @@ members.each do |member|
     puts "#{first_name} #{last_name}"
   else
     first_name = member['profile']['real_name']
-    last_name = ""
+    last_name = "?"
     puts "#{first_name} #{last_name}"
   end
   member = Member.new(
       {
-          username: member['profile']['email'].split('@')[0].split('.')[0],
+          member_id: member['profile']['email'].split('@')[0].split('.')[0],
           slack_id: member['id'],
           nickname: nickname,
           first_name: first_name,

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get 'confirmation'      => 'devise/confirmations#show',     as: :member_confirmation
     post 'confirmation'     => 'devise/confirmation#create',    as: nil
   end
-  resources :members, param: :username
+  resources :members, param: :member_id
   resources :events, param: :event_id
 
   root 'pages#index'

@@ -7,7 +7,7 @@ class MembersController < ApplicationController
   def create
   end
   def show
-    @member = Member.find_by(username: params[:username])
+    @member = Member.find_by(member_id: params[:member_id])
   end
   def edit
   end
