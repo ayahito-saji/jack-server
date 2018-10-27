@@ -23,7 +23,7 @@ class EventsController < ApplicationController
         Event.create({
                          event_id: SecureRandom.base58(10),
                          title: '通常活動',
-                         start_at: Time.zone.local(day.year, day.mon, day.mday, 16, 30),
+                         start_at: Time.zone.local(day.year, day.mon, day.mday, 10, 30),
                          end_at: Time.zone.local(day.year, day.mon, day.mday, 22, 30),
                          place: 'ディスカバリースクエア',
                          description: 'もくもく会',
