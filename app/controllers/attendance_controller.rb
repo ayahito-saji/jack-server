@@ -6,7 +6,7 @@ class AttendanceController < ApplicationController
     res = ""
 
     Event.where(["start_at > ? and end_at < ?", start_day, end_day]).where(need_attendance: true, done_attendance: false).each do |event|
-      Member.where(member_id: 'saji').each do |member|
+      Member.all.each do |member|
         MemberEvent.create(member: member, event: event, attendance: :null)
         data = {
             channel: member.slack_id,

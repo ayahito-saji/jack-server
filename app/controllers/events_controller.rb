@@ -41,7 +41,7 @@ class EventsController < ApplicationController
 
   # イベント一覧
   def index
-    @events = Event.all
+    @events = Event.all.order(:start_at)
   end
 
   # イベントの個別ページ
