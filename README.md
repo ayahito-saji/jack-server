@@ -1,24 +1,26 @@
-# README
+# jack運営のためのサーバー
+* Ruby 2.4
+* Rails 5.1 〜
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## セットアップ
+git cloneして，プロジェクタフォルダ内で
 
-Things you may want to cover:
+データベースをセットアップ
+```
+$ rails db:migrate
+```
+サーバーを立てる
+```
+$ rails server
+```
 
-* Ruby version
+###次のURLにアクセスしてデータベースを追加すること
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+メンバーをslack経由で自動で登録する
+```
+localhost:3000/api/members/seed
+```
+2018年度の通常活動を登録する
+```
+localhost:3000/api/events/seed
+```
