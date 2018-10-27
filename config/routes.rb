@@ -27,9 +27,11 @@ Rails.application.routes.draw do
 
   root 'pages#index'
 
+  # API部分
   scope :api do
+    post 'slack/callback', to: 'slack#callback'
     get 'attendance', to: 'attendance#new'
-    post 'slack/callback', to: 'callback#slack'
-
+    get 'events/seed', to: 'events#seed'
+    get 'members/seed', to: 'members#seed'
   end
 end

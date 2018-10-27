@@ -1,15 +1,16 @@
-class CallbackController < ApplicationController
-  protect_from_forgery :except => [:slack]
+class SlackController < ApplicationController
+  # エラー422を回避する
+  protect_from_forgery :except => [:callback]
   require 'pp'
   require 'json'
 
-  # slackからのcallback先
-  def slack
+  # slackからのコールバック
+  def callback
     if params['command'] # slack command
       @body = params
       case params['command']
-  #      when '/jack_atd' # コマンドとそれの実行
-  #        jack_atd
+        when '/jack_cmd' # コマンドとそれの実行
+          puts ('Hello World!!')
       end
       render plain: ""
     else                 # slack command以外
@@ -20,15 +21,14 @@ class CallbackController < ApplicationController
         when 'interactive_message'  # インタラクティブコンポーネント（ボタン等）ならば，callback_idで振り分ける
           case @body['callback_id']
             when 'attendance_check'
-              attendance_check()
+              attendance
           end
           render plain: ""
       end
     end
   end
   private
-  def attendance_check
-
+  def attendance
     member = Member.find_by(slack_id: @body['user']['id'])
     event = Event.find_by(event_id: @body['original_message']['attachments'][0]['fallback'])
 
@@ -57,7 +57,6 @@ class CallbackController < ApplicationController
     data['attachments'][0]['color'] = ["#5cb85c", "#808080", "#d9534f"][@body['actions'][0]['value'].to_i]
     data['attachments'] = data['attachments'].to_json.to_s
 
-    slack = Slack::Slack.new
-    res = slack.update(data)
+    res = updateMessage(data)
   end
 end

@@ -7,7 +7,8 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.datetime :end_at
       t.string :place
       t.text :description
-
+      t.boolean :need_attendance
+      t.boolean :done_attendance
       t.timestamps
     end
   end

@@ -8,6 +8,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.1]
       t.string   :first_name,         null: false, default: ""
       t.string   :last_name,          null: false, default: ""
       t.string   :email,              null: false, default: ""
+      t.date     :birthday,           null: false
       t.boolean  :is_graduate,        null: false, default: false
       t.date     :enroll_date,        null: false
       t.integer  :repeat_years,       null: false, default: 0

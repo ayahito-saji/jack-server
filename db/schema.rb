@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181017004341) do
+ActiveRecord::Schema.define(version: 20181016025151) do
 
   create_table "events", force: :cascade do |t|
     t.string "event_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20181017004341) do
     t.datetime "end_at"
     t.string "place"
     t.text "description"
+    t.boolean "need_attendance"
+    t.boolean "done_attendance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(version: 20181017004341) do
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "email", default: "", null: false
+    t.date "birthday", null: false
     t.boolean "is_graduate", default: false, null: false
     t.date "enroll_date", null: false
     t.integer "repeat_years", default: 0, null: false
@@ -71,16 +74,6 @@ ActiveRecord::Schema.define(version: 20181017004341) do
     t.index ["member_id"], name: "index_members_on_member_id", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_members_on_school_id"
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "project_id"
-    t.string "title"
-    t.datetime "release_at"
-    t.text "description"
-    t.integer "mode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
