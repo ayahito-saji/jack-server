@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181016025151) do
+ActiveRecord::Schema.define(version: 20181101105018) do
 
   create_table "events", force: :cascade do |t|
     t.string "event_id"
@@ -74,6 +74,11 @@ ActiveRecord::Schema.define(version: 20181016025151) do
     t.index ["member_id"], name: "index_members_on_member_id", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_members_on_school_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
