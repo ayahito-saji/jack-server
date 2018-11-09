@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
+set -i
 
-apt-get -y install git curl g++ make
-apt-get -y install zlib1g-dev libssl-dev libreadline-dev
-apt-get -y install libyaml-dev libxml2-dev libxslt-dev
-apt-get -y install sqlite3 libsqlite3-dev nodejs
+sudo apt-get -y install git curl g++ make
+sudo apt-get -y install zlib1g-dev libssl-dev libreadline-dev
+sudo apt-get -y install libyaml-dev libxml2-dev libxslt-dev
+sudo apt-get -y install sqlite3 libsqlite3-dev nodejs
 
 git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build

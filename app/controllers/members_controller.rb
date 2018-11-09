@@ -29,9 +29,11 @@ class MembersController < ApplicationController
         puts "#{first_name} #{last_name}"
       else
         first_name = member['profile']['real_name']
-        last_name = "?"
         puts "#{first_name} #{last_name}"
       end
+      first_name = '?' unless first_name && first_name != ''
+      last_name = '?' unless last_name && last_name != ''
+
       unless Member.find_by(slack_id: member['id'])
         member = Member.new(
             {
