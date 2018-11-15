@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20181016025151) do
     t.string "icon_url", default: "", null: false
     t.text "profile", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "slack_id", null: false
+    t.string "slack_id", default: "", null: false
     t.integer "school_id"
     t.integer "faculty_id"
     t.integer "department_id"
-    t.boolean "admin", null: false
+    t.boolean "admin", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
