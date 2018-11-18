@@ -1,0 +1,66 @@
+<h1>Jack入会フォーム</h1>
+<table class = "form">
+  <%= form_tag(controller: "join", action: "result") do %>
+  <tr>
+    <td>名前：</td>
+    <td><%= text_field_tag("last_name") %> <%= text_field_tag("first_name") %></td>
+  </tr>
+  <tr>
+    <td>メール：</td>
+    <td>
+      <%= text_field_tag("mail_1") %>@
+      <%= text_field_tag("mail_2") %>
+    </td>
+  </tr>
+  <tr>
+    <td>Password：</td>
+    <td><%= text_field_tag("pass") %></td>
+  </tr>
+  <tr>
+    <td>大学・学部・学科・学年</td>
+    <td>
+      <%= text_field_tag("univ") %>大学
+      <%= text_field_tag("Undergraduate") %>学部
+      <%= text_field_tag("Department") %>学科
+      <%= select_tag("Grade", options_for_select(["1年", "2年", "3年", "4年", "院生"])) %>
+    </td>
+  </tr>
+  <tr>
+    <td>あだ名：</td>
+    <td><%= text_field_tag("nickname") %></td>
+  </tr>
+  <tr>
+    <td>プログラムなどの経験(任意)：</td>
+    <td><%= text_field_tag("experience") %></td>
+  </tr>
+  <tr>
+    <td>やりたい役職：</td>
+    <td><%= select_tag("Position", options_for_select(["エンジニア", "デザイナー", "マーケター", "プランナー", "その他"])) %></td>
+  </tr>
+  <tr>
+    <td>やりたいプログラムなど：</td>
+    <td><%= select_tag("program", options_for_select(["Web", "ゲーム", "アプリ", "ハードウェア", "その他"])) %></td>
+  </tr>
+  <tr>
+    <td>誕生日：</td>
+    <td>
+      <%= select_tag("month", options_for_select(["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"])) %>
+      <%= select_tag("day", options_for_select(["1日", "2日", "3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日", "12日", "13日", "14日", "15日", "16日", "17日", "18日", "19日", "20日", "21日", "22日", "23日", "24日", "25日", "26日", "27日", "28日", "29日", "30日", "31日"])) %>
+    </td>
+  </tr>
+  <tr>
+    <td>好きな食べ物(任意)：</td>
+    <td><%= text_field_tag("like_food") %></td>
+  </tr>
+  <tr>
+    <td>嫌いな食べ物(任意)：</td>
+    <td><%= text_field_tag("dislike_food") %></td>
+  </tr>
+    <tr>
+      <td></td>
+      <td><%= submit_tag("Click") %></td>
+    </tr>
+  <% end %>
+</table>
+
+
