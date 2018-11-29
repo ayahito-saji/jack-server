@@ -1,8 +1,15 @@
-<header>
-  <div class="header-logo">
-    TweetApp
+<div>
+  <%= @id %>
+  <h1 contenteditable="true">
+    <%= @product.name %>
+  </h1>
+  <div>
+    <%= "作成日時#{@product.created_at}" %>
   </div>
-  <ul class="header-menus">
-    <li>TweetAppとは</li>
-  </ul>
-</header>
+  <select name="progress" id="">
+      <option value="idea">アイデア</option>
+      <option value="developinig">開発中</option>
+      <option value="released">リリース</option>
+      <option value="archive">公開終了</option>
+  </select>
+</div>

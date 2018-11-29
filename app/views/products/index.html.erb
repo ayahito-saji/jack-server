@@ -1,8 +1,9 @@
-<header>
-  <div class="header-logo">
-    TweetApp
+<div class="main products-index">
+  <div class="container">
+    <% @products.each do |product| %>
+      <div class="product-index-item">
+        <%= link_to(product.name,"/products/#{product.id}") %>
+      </div>
+    <% end %>
   </div>
-  <ul class="header-menus">
-    <li>TweetAppとは</li>
-  </ul>
-</header>
+</div>
