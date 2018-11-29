@@ -26,3 +26,5 @@
 .DS_Store
 .env
 .vagrant
+
+vendor/bundle/ruby
