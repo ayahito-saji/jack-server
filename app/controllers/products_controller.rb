@@ -11,4 +11,13 @@ class ProductsController < ApplicationController
   def new
     
   end
+  
+  def create
+    @product = Product.new(name: params[:name])
+    @product.save
+    redirect_to("/products/index")
+  end
+  def edit
+    @product = Product.find_by(id: params[:id])
+  end
 end

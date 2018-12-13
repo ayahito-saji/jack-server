@@ -5,11 +5,6 @@
   </h1>
   <div>
     <%= "作成日時#{@product.created_at}" %>
+    <%= link_to("編集","/products/#{@product.id}/edit") %>
   </div>
-  <select name="progress" id="">
-      <option value="idea">アイデア</option>
-      <option value="developinig">開発中</option>
-      <option value="released">リリース</option>
-      <option value="archive">公開終了</option>
-  </select>
 </div>

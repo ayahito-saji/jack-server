@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'products/index'
   get 'products/new'
+  post 'products/create'
   get 'products/:id' => 'products#show'
+  get 'products/:id/edit' => 'products#edit'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
