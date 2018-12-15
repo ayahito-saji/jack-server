@@ -5,6 +5,9 @@
   </h1>
   <div>
     <%= "作成日時#{@product.created_at}" %>
+    <div class = "product_menu">
     <%= link_to("編集","/products/#{@product.id}/edit") %>
+    <%= link_to("削除","/products/#{@product.id}/destroy", {method:"post"}) %>
+    </div>
   </div>
 </div>
