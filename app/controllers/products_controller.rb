@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   end
   
   def create
-    @product = Product.new(name: params[:name])
+    @product = Product.new(name: params[:name], content: params[:content], progress: params[:progress])
     if @product.save
       flash[:notice] = "作成しました"
       redirect_to("/products/index")
@@ -29,6 +29,8 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find_by(id: params[:id])
     @product.name = params[:name]
+    @product.content = params[:content]
+    @product.progress = params[:progress]
     if @product.save
       flash[:notice] = "編集しました"
       redirect_to("/products/index")
