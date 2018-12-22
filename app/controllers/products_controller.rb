@@ -4,7 +4,16 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @id = params[:id]
+    @product = Product.find_by(id: params[:id])
+    if !(signed_in?) && @product.progress == "リリース"
+      redirect_to("/products/#{params[:id]}/public")
+    elsif !(signed_in?)
+      flash[:notice] = "このプロダクトは非公開です"
+      redirect_to("/products/index")
+    end
+  end
+
+  def public_show
     @product = Product.find_by(id: params[:id])
   end
 
@@ -41,7 +50,7 @@ class ProductsController < ApplicationController
     @product.progress = params[:progress]
     if @product.save
       flash[:notice] = "編集しました"
-      redirect_to("/products/index")
+      redirect_to("/products/#{params[:id]}")
     else
       render("products/edit")
     end

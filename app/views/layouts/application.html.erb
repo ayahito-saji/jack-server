@@ -27,9 +27,11 @@
         <li>
           <%= link_to("プロダクト一覧", "/products/index") %>
         </li>
-        <li>
+        <% if signed_in? %>
+          <li>
           <%= link_to("新規プロダクト", "/products/new") %>
-        </li>
+          </li>
+        <% end %>
       </ul>
     </header>
 

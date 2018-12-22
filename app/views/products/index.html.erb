@@ -1,9 +1,15 @@
 <div class="main products-index">
   <div class="container">
     <% @products.each do |product| %>
-      <div class="product-index-item">
-        <%= link_to(product.name,"/products/#{product.id}") %>
-      </div>
+      <% if signed_in? %>
+        <div class="product-index-item">
+          <%= link_to(product.name,"/products/#{product.id}") %>
+        </div>
+      <% elsif product.progress == "リリース" %>
+        <div class="product-index-item">
+          <%= link_to(product.name,"/products/#{product.id}/public") %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'products/new'
   post 'products/create'
   get 'products/:id' => 'products#show'
+  get 'products/:id/public' => 'products#public_show'
   get 'products/:id/edit' => 'products#edit'
   post 'products/:id/update' => 'products#update'
   post 'products/:id/destroy' => 'products#destroy'
