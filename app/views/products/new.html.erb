@@ -20,7 +20,13 @@
           <option value="リリース">リリース</option>
           <option value="公開終了">公開終了</option>
         </select>
-        <input type="submit" value="作成">
+        <h2 class = "form-title">メンバー</h2>
+
+        <% @members.each do |member| %>
+        <%= check_box_tag(member.id) %>
+        <%= label_tag(member.id, "#{member.nickname}") %>
+        <% end %>
+        <input type = "submit" value="作成">
       </div>
     </div>
     <% end %>

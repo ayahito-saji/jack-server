@@ -10,10 +10,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @members = Member.all
   end
   
   def create
-    @product = Product.new(name: params[:name], content: params[:content], progress: params[:progress])
+    @product = Product.new(name: params[:name], content: params[:content], progress: params[:progress] )
     if @product.save
       flash[:notice] = "作成しました"
       redirect_to("/products/index")
@@ -23,6 +24,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @members = Member.all
     @product = Product.find_by(id: params[:id])
   end
 

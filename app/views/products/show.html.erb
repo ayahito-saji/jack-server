@@ -7,7 +7,7 @@
       <h2>進捗</h2>
       <p><%= @product.progress %></p>
       <%= "作成日時#{@product.created_at}" %>
-      <div class = "product_menu">
+      <div class = "product-menus">
         <%= link_to("編集","/products/#{@product.id}/edit") %>
         <%= link_to("削除","/products/#{@product.id}/destroy", {method:"post"}) %>
       </div>

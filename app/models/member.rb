@@ -6,6 +6,9 @@ class Member < ApplicationRecord
 
   has_many :member_events, dependent: :destroy
   has_many :events, through: :member_events
+  has_many :member_products, dependent: :destroy
+  has_many :products, through: :member_products
+
 
   validates :member_id, presence: true, uniqueness: true
   validates :nickname, presence: true
