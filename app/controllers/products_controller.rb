@@ -10,21 +10,27 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @members = Member.all
+    @members_all = Member.all
   end
   
   def create
-    @product = Product.new(name: params[:name], content: params[:content], progress: params[:progress] )
+    @product = Product.new(name: params[:name], content: params[:content], progress: params[:progress])
     if @product.save
       flash[:notice] = "作成しました"
       redirect_to("/products/index")
     else
       render("products/new")
     end
+
+    Member.all.each do |member|
+      if params[:members].include?("#{member.id}")
+        MemberProduct.create(member: member, product: @product)
+      end
+    end
   end
 
   def edit
-    @members = Member.all
+    @members_all = Member.all
     @product = Product.find_by(id: params[:id])
   end
 
@@ -38,6 +44,14 @@ class ProductsController < ApplicationController
       redirect_to("/products/index")
     else
       render("products/edit")
+    end
+    Member.all.each do |member|
+      @member_product = MemberProduct.find_by(member: member, product: @product)
+      if params[:members].include?("#{member.id}") && !(@member_product) #チェックが入っている、かつアソシエーションがない場合
+        MemberProduct.create(member: member, product: @product)
+      elsif !(params[:members].include?("#{member.id}")) && @member_product #チェックが入っていない、かつアソシエーションがある場合
+        @member_product.destroy
+      end
     end
   end
 

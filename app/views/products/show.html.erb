@@ -6,6 +6,11 @@
       <p><%= @product.content %></p>
       <h2>進捗</h2>
       <p><%= @product.progress %></p>
+      <h2>メンバー</h2>
+      <% @product.members.each do |member| %>
+        <%= image_tag(member.icon_url) %>
+        <%= member.nickname %><br>
+       <% end %>
       <%= "作成日時#{@product.created_at}" %>
       <div class = "product-menus">
         <%= link_to("編集","/products/#{@product.id}/edit") %>

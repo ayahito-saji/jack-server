@@ -22,9 +22,8 @@
         </select>
         <h2 class = "form-title">メンバー</h2>
 
-        <% @members.each do |member| %>
-        <%= check_box_tag(member.id) %>
-        <%= label_tag(member.id, "#{member.nickname}") %>
+        <% @members_all.each do |member_each| %>
+          <input type="checkbox" name = "members[]" value = <%= member_each.id %>> <%= member_each.nickname %><br>
         <% end %>
         <input type = "submit" value="作成">
       </div>

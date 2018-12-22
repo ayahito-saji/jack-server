@@ -20,13 +20,17 @@
           <option value="リリース">リリース</option>
           <option value="公開終了">公開終了</option>
         </select>
-        <% @members.each do |member| %>
-          <%= check_box_tag(member.id) %>
-          <%= label_tag(member.id, "#{member.nickname}") %>
+        <h2 class = "form-title">メンバー</h2>
+        <% @members_all.each do |member_each| %>
+          <% if @product.members.include?(member_each) %>
+            <input type="checkbox" name = "members[]" value = "<%= member_each.id %>", checked = "checked"><%= member_each.nickname %><br>
+          <% else %>
+            <input type="checkbox" name = "members[]" value = "<%= member_each.id %>"><%= member_each.nickname %><br>
+          <% end %>
         <% end %>
         <input type="submit" value="保存">
-        <% end %>
       </div>
     </div>
+    <% end %>
    </div>
 </div>
